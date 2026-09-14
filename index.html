@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    name="description"
+    content="Апогей — приватный рефлексивный журнал для наблюдения за мыслями и состоянием."
+  >
+
+  <title>Апогей — рефлексивный журнал</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="logo" href="#" aria-label="Апогей — главная страница">
+      <span class="logo-mark">А</span>
+
+      <span>
+        <strong>Апогей</strong>
+        <small>рефлексивный журнал</small>
+      </span>
+    </a>
+
+    <button
+      id="theme-button"
+      class="icon-button"
+      type="button"
+      aria-label="Переключить тему"
+      title="Переключить тему"
+    >
+      ◐
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Пространство для честного разговора с собой</p>
+
+        <h1>Заметь настоящее.<br>Осмысли пройденное.</h1>
+
+        <p class="hero-description">
+          Короткие регулярные записи помогают замечать изменения,
+          сохранять важные мысли и принимать более осознанные решения.
+        </p>
+      </div>
+
+      <aside class="privacy-card">
+        <span aria-hidden="true">◌</span>
+
+        <div>
+          <strong>Ваши записи приватны</strong>
+
+          <p>
+            Данные сохраняются только в этом браузере
+            и не отправляются на сервер.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="dashboard" aria-label="Статистика журнала">
+      <article>
+        <strong id="entries-count">0</strong>
+        <span>всего записей</span>
+      </article>
+
+      <article>
+        <strong id="average-energy">—</strong>
+        <span>средняя энергия</span>
+      </article>
+
+      <article>
+        <strong id="current-streak">0</strong>
+        <span>дней подряд</span>
+      </article>
+    </section>
+
+    <div class="content-grid">
+      <section class="editor-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Новая запись</p>
+            <h2>Что происходит внутри?</h2>
+          </div>
+
+          <time id="current-date"></time>
+        </div>
+
+        <div class="prompt-card">
+          <div>
+            <span class="prompt-label">Вопрос для размышления</span>
+            <p id="reflection-prompt"></p>
+          </div>
+
+          <button
+            id="new-prompt-button"
+            class="small-button"
+            type="button"
+          >
+            Другой вопрос
+          </button>
+        </div>
+
+        <form id="journal-form">
+          <label for="entry-title">Название записи</label>
+
+          <input
+            id="entry-title"
+            name="title"
+            type="text"
+            maxlength="80"
+            placeholder="Например: Итоги насыщенного дня"
+          >
+
+          <label for="entry-text">Ваши мысли</label>
+
+          <textarea
+            id="entry-text"
+            name="text"
+            rows="9"
+            maxlength="5000"
+            placeholder="Пишите свободно. Здесь не требуется идеальная формулировка..."
+            required
+          ></textarea>
+
+          <div class="character-row">
+            <span>Не торопитесь. Эта запись только для вас.</span>
+            <span id="character-count">0 / 5000</span>
+          </div>
+
+          <fieldset>
+            <legend>Как вы себя чувствуете?</legend>
+
+            <div class="mood-options">
+              <label>
+                <input type="radio" name="mood" value="Тяжело">
+                <span class="mood-card">
+                  <b>◔</b>
+                  Тяжело
+                </span>
+              </label>
+
+              <label>
+                <input type="radio" name="mood" value="Спокойно">
+                <span class="mood-card">
+                  <b>◡</b>
+                  Спокойно
+                </span>
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="mood"
+                  value="Хорошо"
+                  checked
+                >
+                <span class="mood-card">
+                  <b>◠</b>
+                  Хорошо
+                </span>
+              </label>
+
+              <label>
+                <input type="radio" name="mood" value="Вдохновлённо">
+                <span class="mood-card">
+                  <b>✦</b>
+                  Вдохновлённо
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="energy-group">
+            <div class="energy-heading">
+              <label for="energy">Уровень энергии</label>
+              <output id="energy-output" for="energy">5 из 10</output>
+            </div>
+
+            <input
+              id="energy"
+              name="energy"
+              type="range"
+              min="1"
+              max="10"
+              value="5"
+            >
+
+            <div class="range-labels">
+              <span>Низкий</span>
+              <span>Высокий</span>
+            </div>
+          </div>
+
+          <label for="entry-tags">
+            Теги
+            <span class="optional">необязательно</span>
+          </label>
+
+          <input
+            id="entry-tags"
+            name="tags"
+            type="text"
+            maxlength="100"
+            placeholder="работа, обучение, идея"
+          >
+
+          <button class="primary-button" type="submit">
+            Сохранить запись
+          </button>
+
+          <p id="form-message" class="form-message" role="status"></p>
+        </form>
+      </section>
+
+      <aside class="history-panel">
+        <div class="history-heading">
+          <div>
+            <p class="eyebrow">История</p>
+            <h2>Прошлые записи</h2>
+          </div>
+
+          <button
+            id="export-button"
+            class="small-button"
+            type="button"
+          >
+            Экспорт
+          </button>
+        </div>
+
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Поиск по журналу"
+            aria-label="Поиск по журналу"
+          >
+        </label>
+
+        <div id="entries-list" class="entries-list"></div>
+
+        <div id="empty-state" class="empty-state">
+          <span>✦</span>
+          <h3>Начните с первой записи</h3>
+          <p>
+            Сохранённые размышления появятся в этом разделе.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <p>Апогей · Создано для осознанной рефлексии</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
